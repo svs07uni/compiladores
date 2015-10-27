@@ -40,4 +40,6 @@ public class Arreglo extends Identificador{
              //else larga error de dimensiones   
             return false;
         }
+        
+        
 }
