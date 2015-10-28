@@ -27,10 +27,12 @@ public class Analizador_Sint {
 	private Lexico lex;
 	private Sintactico sint;
 	private Thread sint2;
+	
+	private HashMap<String,TablaDeSimbolos> tabla_ts;
         
-	public Analizador_Sint(String arch, HashMap<String,TablaDeSimbolos> tabla_ts t){
+	public Analizador_Sint(String arch, HashMap<String,TablaDeSimbolos> t){
 		this.archivo = arch;
-                
+        this.tabla_ts = t;      
 	}
 	
 	public void comenzar(){
@@ -38,7 +40,7 @@ public class Analizador_Sint {
         this.lex = new Lexico(this.archivo, buffer, errores);
         
         //Sintactico sint = new Sintactico(buffer, errores,lex);
-        this.sint = new Sintactico(buffer, errores,lex, t);
+        this.sint = new Sintactico(buffer, errores,lex, tabla_ts);
         this.sint2 = new Thread(sint);
         
         

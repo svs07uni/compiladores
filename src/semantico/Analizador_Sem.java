@@ -1,6 +1,6 @@
 package semantico;
 
-import java.util.Stack;
+import java.util.*;
 
 public class Analizador_Sem {
 

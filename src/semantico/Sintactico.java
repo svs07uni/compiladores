@@ -1,8 +1,8 @@
 package semantico;
 
 
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.logging.Level;
@@ -95,6 +95,12 @@ public class Sintactico implements Runnable{
                 terminarAnalisis();//MATAR HILO
             }
             
+            // crear nueva TS y agregarla a la tabla_ts
+            ts = new TablaDeSimbolos(tk.getLexema(), null);
+            tabla_ts.put(tk.getLexema(), ts);
+            //
+            
+            
             lexemaAnterior=tk.getLexema();
            
             tk = this.obtenerSiguienteToken();
@@ -105,7 +111,9 @@ public class Sintactico implements Runnable{
             lexemaAnterior=tk.getLexema();
             
             declaraciones();
-
+            
+            System.out.println("Fin de carga de las TS");
+            
             sentenciaCompuesta();
             
             
