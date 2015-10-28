@@ -22,9 +22,10 @@ public class Sintactico implements Runnable{
         private boolean finLexico;
         private boolean exito;
         
-        private Stack<TablaDeSimbolos> pila;
+        private HashMap<String,TablaDeSimbolos> tabla_ts ;
+        private TablaDeSimbolos ts;
         
-	public Sintactico(SynchronousQueue nbuffer, ManejoDeErrores e2, Lexico l){
+	public Sintactico(SynchronousQueue nbuffer, ManejoDeErrores e2, Lexico l, HashMap<String,TablaDeSimbolos> t){
             this.buffer = nbuffer;
             manejo=e2;
             this.lexemaAnterior="";
@@ -33,6 +34,7 @@ public class Sintactico implements Runnable{
             finLexico=false;
             exito=false;
             
+            this.tabla_ts = t;
 	}
         
         public boolean exito(){
@@ -92,9 +94,7 @@ public class Sintactico implements Runnable{
                 manejo.agregarError(new Error(21,tk.getLinea(),tk.getLexema(),lexemaAnterior));
                 terminarAnalisis();//MATAR HILO
             }
-            else{
-                
-            }
+            
             lexemaAnterior=tk.getLexema();
            
             tk = this.obtenerSiguienteToken();

@@ -3,10 +3,10 @@ package semantico;
 import java.util.Stack;
 
 public class Semantico {
-    private Stack<TablaDeSimbolos> pila ;
+    private HashMap<String,TablaDeSimbolos> pila ;
     
-    public Semantico(Stack<TablaDeSimbolos> p){
-        this.pila = new Stack<TablaDeSimbolos>();
+    public Semantico(){
+        this.pila = new HashMap<String,TablaDeSimbolos>();
     }
     
     public void agregarElemento(String nombre, Identificador id){
